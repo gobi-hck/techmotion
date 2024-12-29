@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+    
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH Tunneling Explained">
+<meta property="og:site_name" content="Tech Motion">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-21T14:36:57.212Z">
+<meta property="article:author" content="Tech Motion">
+<meta property="article:tag" content="Hacker, Security, Vulnerability, Web, RCE, SSRF, XSS, CVE">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/aero-cover.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/aero-cover.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/aero-cover.png">
+        
+      
+    
+    <!-- title -->
+    
+      <title>
+        SSH Tunneling Explained
+        </title>
+    
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-13047966-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-13047966-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Tech Motion" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/aero-cover.png" />
+    
+  
+    <div id="title">
+      <a class="u-url u-uid" href="/"> <h1 class="p-name">Tech Motion</h1> </a>
+    </div>
+  
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+     --><li><a href="/about/">About</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+        
+          <hr style='margin: 0px; margin-bottom: 32px; border: 0.5px solid #ccc; '>
+        
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        SSH Tunneling Explained
+    </h1>
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+       
+      </span>
+
+    <div class="postdate">
+      
+    </div>
+
+    </div>
+  </header>
+  
+
+ <div class="content e-content" itemprop="articleBody">
+    <p>Recently I wanted to set up a remote desktop sharing session from home pc to my laptop. While going through the set up guide I came across ssh tunneling. Even though there are many articles on the subject still it took me a considerable amount of googling, some experimenting and couple of Wireshark sessions to grasp what&#8217;s going under the hood. Most of the guides were incomplete in terms of explaining the concept which left me desiring for a good article on the subject with some explanatory illustrations. So I decided to write it my self. So here goes&#8230;</p>
+    <h3 style="text-align:justify;">Introduction</h3>
+    <p style="text-align:justify;">A SSH tunnel consists of an encrypted tunnel created through a SSH protocol<br />
+    connection. A SSH tunnel can be used to transfer unencrypted traffic over a<br />
+    network through an encrypted channel. For example we can use a ssh tunnel to<br />
+    securely transfer files between a FTP server and a client even though the FTP<br />
+    protocol itself is not encrypted. SSH tunnels also provide a means to bypass firewalls that prohibits or filter certain internet services. For example an organization will block certain sites using their proxy filter. But users may not wish to have their web traffic<br />
+    monitored or blocked by the organization proxy filter. If users can connect to<br />
+    an external SSH server, they can create a SSH tunnel to forward a given port on<br />
+    their local machine to port 80 on remote web-server via the external SSH<br />
+    server. I will describe this scenario in detail in a little while.</p>
+    <p style="text-align:justify;">To set up a SSH tunnel a given port of one machine needs to be forwarded (of<br />
+    which I am going to talk about in a little while) to a port in the other<br />
+    machine which will be the other end of the tunnel. Once the SSH tunnel has been<br />
+    established, the user can connect to earlier specified port at first machine to<br />
+    access the network service.</p>
+    <h3 style="text-align:justify;">Port Forwarding</h3>
+    <p style="text-align:justify;">SSH tunnels can be created in several ways using different kinds of port forwarding<br />
+    mechanisms. Ports can be forwarded in three ways.</p>
+    <ol style="text-align:justify;">
+    <li>Local port forwarding</li>
+    <li>Remote port forwarding</li>
+    <li>Dynamic port forwarding</li>
+    </ol>
+    <p style="text-align:justify;">I didn&#8217;t explain what port forwarding is. I found Wikipedia&#8217;s definition more explanatory.</p>
+    <blockquote><p>Port forwarding or port mapping is a name given to the combined technique of</p>
+    <ol>
+    <li>translating the address and/or port number of a packet to a new destination</li>
+    <li>possibly accepting such packet(s) in a packet filter(firewall)</li>
+    <li>forwarding the packet according to the routing table.</li>
+    </ol>
+    </blockquote>
+    <p style="text-align:justify;">Here the first technique will be used in creating an SSH tunnel. When a client application connects to the local port (local endpoint) of the SSH tunnel and transfer data these data will be forwarded to the remote end by translating the host and port values to that of the remote end of the channel.</p>
+    <p style="text-align:justify;">So with that let&#8217;s see how SSH tunnels can be created using forwarded ports with an examples.</p>
+    <h3 style="text-align:justify;">Tunnelling with Local port forwarding</h3>
+    <p style="text-align:justify;">Let&#8217;s say that yahoo.com is being blocked using a proxy filter in the University.<br />
+    (For the sake of this example. :). Cannot think any valid reason why yahoo would be blocked). A SSH tunnel can be used to bypass this restriction. Let&#8217;s name my machine at the university as &#8216;work&#8217; and my home machine as &#8216;home&#8217;. &#8216;home&#8217; needs to have a public IP for this to work. And I am running a SSH server on my home machine. Following diagram illustrates the scenario.</p>
+    <p style="text-align:center;"><a href="https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg"><img data-attachment-id="543" data-permalink="https://chamibuddhika.wordpress.com/2012/03/21/ssh-tunnelling-explained/scenario/" data-orig-file="https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg" data-orig-size="1073,310" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Scenario" data-image-description="" data-image-caption="" data-medium-file="https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg?w=300" data-large-file="https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg?w=500" class=" wp-image-543 aligncenter" title="Scenario" alt="" src="https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg?w=650&#038;h=187" height="187" width="650" srcset="https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg?w=647&amp;h=187 647w, https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg?w=150&amp;h=43 150w, https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg?w=300&amp;h=87 300w, https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg?w=768&amp;h=222 768w, https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg?w=1024&amp;h=296 1024w, https://chamibuddhika.files.wordpress.com/2012/03/scenario.jpg 1073w" sizes="(max-width: 650px) 100vw, 650px" /></a></p>
+    <p style="text-align:justify;">To create the SSH tunnel execute following from &#8216;work&#8217; machine.</p>
+    <pre class="brush: xml; title: ; notranslate" title="">
+    ssh -L 9001:yahoo.com:80 home
+    </pre>
+    <p style="text-align:justify;">The &#8216;L&#8217; switch indicates that a local port forward is need to be created. The switch syntax is as follows.</p>
+    <pre class="brush: xml; title: ; notranslate" title="">
+    -L &lt;local-port-to-listen&gt;:&lt;remote-host&gt;:&lt;remote-port&gt;
+    </pre>
+    <p style="text-align:justify;">Now the SSH client at &#8216;work&#8217; will connect to SSH server running at &#8216;home&#8217; (usually running at port 22) binding port 9001 of &#8216;work&#8217; to listen for local requests thus creating a SSH tunnel between &#8216;home&#8217; and &#8216;work&#8217;. At the &#8216;home&#8217; end it will create a connection to &#8216;yahoo.com&#8217; at port 80. So &#8216;work&#8217; doesn&#8217;t need to know how to connect to yahoo.com. Only &#8216;home&#8217; needs to worry about that. The channel between &#8216;work&#8217; and &#8216;home&#8217; will be encrypted while the connection between &#8216;home&#8217; and &#8216;yahoo.com&#8217; will be unencrypted.</p>
+    <p style="text-align:justify;">Now it is possible to browse yahoo.com by visiting <a href="http://localhost:9001" rel="nofollow">http://localhost:9001</a> in the web browser at &#8216;work&#8217; computer. The &#8216;home&#8217; computer will act as a gateway which would accept requests from &#8216;work&#8217; machine and fetch data and tunnelling it back. So the syntax of the full command would be as follows.</p>
+    <pre class="brush: xml; title: ; notranslate" title="">
+    ssh -L &lt;local-port-to-listen&gt;:&lt;remote-host&gt;:&lt;remote-port&gt; &lt;gateway&gt;
+    </pre>
+    <p style="text-align:justify;">The image below describes the scenario.</p>
+    <p style="text-align:justify;"><a href="https://chamibuddhika.files.wordpress.com/2012/03/localportforwarding.jpg"><img data-attachment-id="545" data-permalink="https://chamibuddhika.wordpress.com/2012/03/21/ssh-tunnelling-explained/localportforwarding/" data-orig-file="https://chamibuddhika.files.wordpress.com/2012/03/localportforwarding.jpg" data-orig-size="703,336" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="LocalPortForwarding" data-image-description="" data-image-caption="" data-medium-file="https://chamibuddhika.files.wordpress.com/2012/03/localportforwarding.jpg?w=300" data-large-file="https://chamibuddhika.files.wordpress.com/2012/03/localportforwarding.jpg?w=500" class="aligncenter size-full wp-image-545" title="LocalPortForwarding" alt="" src="https://chamibuddhika.files.wordpress.com/2012/03/localportforwarding.jpg?w=500&#038;h=238" height="238" width="500" srcset="https://chamibuddhika.files.wordpress.com/2012/03/localportforwarding.jpg?w=498&amp;h=238 498w, https://chamibuddhika.files.wordpress.com/2012/03/localportforwarding.jpg?w=150&amp;h=72 150w, https://chamibuddhika.files.wordpress.com/2012/03/localportforwarding.jpg?w=300&amp;h=143 300w, https://chamibuddhika.files.wordpress.com/2012/03/localportforwarding.jpg 703w" sizes="(max-width: 500px) 100vw, 500px" /></a></p>
+    <p style="text-align:justify;">Here the &#8216;host&#8217; to &#8216;yahoo.com&#8217; connection is only made when browser makes the<br />
+    request not at the tunnel setup time.</p>
+    <p style="text-align:justify;">It is also possible to specify a port in the &#8216;home&#8217; computer itself instead of<br />
+    connecting to an external host. This is useful if I were to set up a VNC session<br />
+    between &#8216;work&#8217; and &#8216;home&#8217;. Then the command line would be as follows.</p>
+    <pre class="brush: xml; title: ; notranslate" title="">
+    ssh -L 5900:localhost:5900 home (Executed from 'work')
+    </pre>
+    <p style="text-align:justify;">So here what does localhost refer to? Is it the &#8216;work&#8217; since the command line is executed from &#8216;work&#8217;? Turns out that it is not. As explained earlier is relative to the gateway (&#8216;home&#8217; in this case) , not the machine from where the tunnel is initiated. So this will make a connection to port 5900 of the &#8216;home&#8217; computer where the VNC client would be listening in.</p>
+    <p style="text-align:justify;">The created tunnel can be used to transfer all kinds of data not limited to web browsing sessions. We can also tunnel SSH sessions from this as well. Let&#8217;s assume there is another computer (&#8216;banned&#8217;) to which we need to SSH from within University but the SSH access is being blocked. It is possible to tunnel a SSH session to this host using a local port forward. The setup would look like this.</p>
+    <p style="text-align:justify;"><a href="https://chamibuddhika.files.wordpress.com/2012/03/sshsessionforwarding.jpg"><img data-attachment-id="542" data-permalink="https://chamibuddhika.wordpress.com/2012/03/21/ssh-tunnelling-explained/sshsessionforwarding/" data-orig-file="https://chamibuddhika.files.wordpress.com/2012/03/sshsessionforwarding.jpg" data-orig-size="799,327" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="SSHSessionForwarding" data-image-description="" data-image-caption="" data-medium-file="https://chamibuddhika.files.wordpress.com/2012/03/sshsessionforwarding.jpg?w=300" data-large-file="https://chamibuddhika.files.wordpress.com/2012/03/sshsessionforwarding.jpg?w=500" class="aligncenter size-full wp-image-542" title="SSHSessionForwarding" alt="" src="https://chamibuddhika.files.wordpress.com/2012/03/sshsessionforwarding.jpg?w=500&#038;h=204" height="204" width="500" srcset="https://chamibuddhika.files.wordpress.com/2012/03/sshsessionforwarding.jpg?w=498&amp;h=204 498w, https://chamibuddhika.files.wordpress.com/2012/03/sshsessionforwarding.jpg?w=150&amp;h=61 150w, https://chamibuddhika.files.wordpress.com/2012/03/sshsessionforwarding.jpg?w=300&amp;h=123 300w, https://chamibuddhika.files.wordpress.com/2012/03/sshsessionforwarding.jpg?w=768&amp;h=314 768w, https://chamibuddhika.files.wordpress.com/2012/03/sshsessionforwarding.jpg 799w" sizes="(max-width: 500px) 100vw, 500px" /></a></p>
+    <p style="text-align:justify;">As can be seen now the transferred data between &#8216;work&#8217; and &#8216;banned&#8217; are encrypted end to end. For this we need to create a local port forward as follows.</p>
+    <pre class="brush: xml; title: ; notranslate" title="">
+    ssh -L 9001:banned:22 home
+    </pre>
+    <p style="text-align:justify;">Now we need to create a SSH session to local port 9001 from where the session<br />
+    will get tunneled to &#8216;banned&#8217; via &#8216;home&#8217; computer.</p>
+    <pre class="brush: xml; title: ; notranslate" title="">
+    ssh -p 9001 localhost
+    </pre>
+    <p style="text-align:justify;">With that let&#8217;s move on to next type of SSH tunnelling method, reverse tunnelling.</p>
+    <h3 style="text-align:justify;">Reverse Tunnelling with remote port forwarding</h3>
+    <p style="text-align:justify;">Let&#8217;s say it is required to connect to an internal university website from home.<br />
+    The university firewall is blocking all incoming traffic. How can we connect from &#8216;home&#8217; to internal network so that we can browse the internal site? A VPN setup is a good candidate here. However for this example let&#8217;s assume we don&#8217;t have this facility. Enter SSH reverse tunnelling..</p>
+    <p style="text-align:justify;">As in the earlier case we will initiate the tunnel from &#8216;work&#8217; computer behind the firewall. This is possible since only incoming traffic is blocking and outgoing traffic is allowed. However instead of the earlier case the client will now be at the &#8216;home&#8217; computer. Instead of -L option we now define -R which specifies<br />
+    a reverse tunnel need to be created.</p>
+    <pre class="brush: xml; title: ; notranslate" title="">
+    ssh -R 9001:intra-site.com:80 home (Executed from 'work')
+    </pre>
+    <p style="text-align:justify;">Once executed the SSH client at &#8216;work&#8217; will connect to SSH server running at home creating a SSH channel. Then the server will bind port 9001 on &#8216;home&#8217; machine to listen for incoming requests which would subsequently be routed through the created SSH channel between &#8216;home&#8217; and &#8216;work&#8217;. Now it&#8217;s possible to browse the internal site<br />
+    by visiting <a href="http://localhost:9001" rel="nofollow">http://localhost:9001</a> in &#8216;home&#8217; web browser. The &#8216;work&#8217; will then create a connection to intra-site and relay back the response to &#8216;home&#8217; via the created SSH channel.</p>
+    <p style="text-align:justify;"><a href="https://chamibuddhika.files.wordpress.com/2012/03/remoteportforwarding.jpg"><img data-attachment-id="544" data-permalink="https://chamibuddhika.wordpress.com/2012/03/21/ssh-tunnelling-explained/remoteportforwarding/" data-orig-file="https://chamibuddhika.files.wordpress.com/2012/03/remoteportforwarding.jpg" data-orig-size="655,343" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="RemotePortForwarding" data-image-description="" data-image-caption="" data-medium-file="https://chamibuddhika.files.wordpress.com/2012/03/remoteportforwarding.jpg?w=300" data-large-file="https://chamibuddhika.files.wordpress.com/2012/03/remoteportforwarding.jpg?w=500" loading="lazy" class="aligncenter size-full wp-image-544" title="RemotePortForwarding" alt="" src="https://chamibuddhika.files.wordpress.com/2012/03/remoteportforwarding.jpg?w=500&#038;h=261" height="261" width="500" srcset="https://chamibuddhika.files.wordpress.com/2012/03/remoteportforwarding.jpg?w=498&amp;h=261 498w, https://chamibuddhika.files.wordpress.com/2012/03/remoteportforwarding.jpg?w=150&amp;h=79 150w, https://chamibuddhika.files.wordpress.com/2012/03/remoteportforwarding.jpg?w=300&amp;h=157 300w, https://chamibuddhika.files.wordpress.com/2012/03/remoteportforwarding.jpg 655w" sizes="(max-width: 500px) 100vw, 500px" /></a></p>
+    <p style="text-align:justify;">As nice all of these would be still you need to create another tunnel if you need to connect to another site in both cases. Wouldn&#8217;t it be nice if it is possible to proxy traffic to any site using the SSH channel created? That&#8217;s what dynamic port forwarding is all about.</p>
+    <h3 style="text-align:justify;">Dynamic Port Forwarding</h3>
+    <p style="text-align:justify;">Dynamic port forwarding allows to configure one local port for tunnelling data to all remote destinations. However to utilize this the client application connecting to local port should send their traffic using the SOCKS protocol. At the client side of the tunnel a SOCKS proxy would be created and the application (eg. browser) uses the SOCKS protocol to specify where the traffic should be sent when it leaves the other end of the ssh tunnel.</p>
+    <pre class="brush: xml; title: ; notranslate" title="">
+    ssh -D 9001 home (Executed from 'work')
+    </pre>
+    <p style="text-align:justify;">Here SSH will create a SOCKS proxy listening in for connections at local port<br />
+    9001 and upon receiving a request would route the traffic via SSH channel<br />
+    created between &#8216;work&#8217; and &#8216;home&#8217;. For this it is required to configure the<br />
+    browser to point to the SOCKS proxy at port 9001 at localhost.</p>
+    <p style="text-align:justify;"><a href="https://chamibuddhika.files.wordpress.com/2012/03/dynamicportforwarding.jpg"><img data-attachment-id="546" data-permalink="https://chamibuddhika.wordpress.com/2012/03/21/ssh-tunnelling-explained/dynamicportforwarding/" data-orig-file="https://chamibuddhika.files.wordpress.com/2012/03/dynamicportforwarding.jpg" data-orig-size="877,329" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="DynamicPortForwarding" data-image-description="" data-image-caption="" data-medium-file="https://chamibuddhika.files.wordpress.com/2012/03/dynamicportforwarding.jpg?w=300" data-large-file="https://chamibuddhika.files.wordpress.com/2012/03/dynamicportforwarding.jpg?w=500" loading="lazy" class="aligncenter size-full wp-image-546" title="DynamicPortForwarding" alt="" src="https://chamibuddhika.files.wordpress.com/2012/03/dynamicportforwarding.jpg?w=500&#038;h=187" height="187" width="500" srcset="https://chamibuddhika.files.wordpress.com/2012/03/dynamicportforwarding.jpg?w=498&amp;h=187 498w, https://chamibuddhika.files.wordpress.com/2012/03/dynamicportforwarding.jpg?w=150&amp;h=56 150w, https://chamibuddhika.files.wordpress.com/2012/03/dynamicportforwarding.jpg?w=300&amp;h=113 300w, https://chamibuddhika.files.wordpress.com/2012/03/dynamicportforwarding.jpg?w=768&amp;h=288 768w, https://chamibuddhika.files.wordpress.com/2012/03/dynamicportforwarding.jpg 877w" sizes="(max-width: 500px) 100vw, 500px" /></a></p>				
+                            
+  
+  
+    </div>
+  </article>
+  
+  
+  
+          
+          <footer id="footer">
+    <div class="footer-left">
+      Copyright &copy;
+      
+      
+      Tech Motion
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <!--
+         --><li><a href="/">Home</a></li><!--
+         --><li><a href="/about/">About</a></li><!--
+       -->
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  
+      </div>
+      <!-- styles -->
+  
+  
+  
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+  
+  
+      <!-- jquery -->
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+  
+  
+  
+  
+  <!-- clipboard -->
+  
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+    $(function() {
+      // copy-btn HTML
+      var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+      btn += '<i class="fa-regular fa-clone"></i>';
+      btn += '</span>';
+      // mount it!
+      $(".highlight table").before(btn);
+      var clip = new ClipboardJS('.btn-copy', {
+        text: function(trigger) {
+          return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+        }
+      });
+      clip.on('success', function(e) {
+        e.trigger.setAttribute('aria-label', "Copied!");
+        e.clearSelection();
+      })
+    })
+    </script>
+  
+  
+  <script src="/js/main.js"></script>
+  
+  <!-- search -->
+  
+  <!-- Baidu Analytics -->
+  
+  <!-- Cloudflare Analytics -->
+  
+  <!-- Disqus Comments -->
+  
+  <!-- utterances Comments -->
+  
+  </body>
+  </html>
+  
+    
