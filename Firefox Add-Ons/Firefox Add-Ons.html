@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+    
+<meta property="og:type" content="article">
+<meta property="og:title" content="Firefox Add-Ons">
+<meta property="og:site_name" content="Tech Motion">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-21T14:36:57.212Z">
+<meta property="article:author" content="Tech Motion">
+<meta property="article:tag" content="Hacker, Security, Vulnerability, Web, RCE, SSRF, XSS, CVE">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/aero-cover.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/aero-cover.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/aero-cover.png">
+        
+      
+    
+    <!-- title -->
+    
+      <title>
+        Firefox Add-Ons
+        </title>
+    
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-13047966-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-13047966-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Tech Motion" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/aero-cover.png" />
+    
+  
+    <div id="title">
+      <a class="u-url u-uid" href="/"> <h1 class="p-name">Tech Motion</h1> </a>
+    </div>
+  
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+     --><li><a href="/about/">About</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+        
+          <hr style='margin: 0px; margin-bottom: 32px; border: 0.5px solid #ccc; '>
+        
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Firefox Add-Ons
+    </h1>
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+       
+      </span>
+
+    <div class="postdate">
+      
+    </div>
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: #c8c3bc;"><strong style="font-weight:bold">1. Access Me </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">The first tool on our list is called “Access Me” which examines vulnerabilities in applications. This allows a pentester/ethical hacker etc. to access network or computer system resources without being authenti­cated. In short, Access Me is used to test for Access vulnerabilities. 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">2. JavaScript Deobfuscator </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This pentesting addon tells you what JavaScript files are running within an HTML page or other, even if it is obfuscated and generated elsewhere. Simply open the JavaScript Deobfuscator app from the Firefox Tools menu and watch the scripts being compiled or executed. Somewhat similar to NoScript. Should add that if this addon is on all the time then all code will render slower so you are best advised to only use it when you need it. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">3. SQL Inject ME </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Good ole SQL Injection vulnerabilities can cause a lot of damage to a web application as any good pentester will tell you. A malicious user can possibly view records, delete records, drop tables and basi­cally go ahead and gain access to your server. SQL Inject-Me is tests for this – i.e. SQL Injection  vulnerabilities. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">4. FoxyProxy </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">FoxyProxy is an old hat, been around for a while now. There is tons of help on setting this up – just hit up YouTube and take a look. For the complete newbies reading this, FoxyProxy is an advanced proxy man­agement tool that can replace Firefox’s proxying capabilities, (which are pretty limited). There are others out there, such as SwitchProxy, QuickProxy or the infamous TorButton. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">5. Key Manager </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This pentesting tool allows for Key Generation, Certificate Enrolment and Authority Delegation. In sum­mary you can see encryption keys that are generated when you visit secure websites. You can also create your own encryption keys. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">6. Selenium IDE </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Got to be honest about this one, we don’t know too much about it. More detailed info here about Se­lenium IDE, but what we can tell you is what we read elsewhere, i.e. that this addon “is an integrated development environment for Selenium scripts. It is implemented as a Firefox extension, and allows you to record, edit, and debug tests.” 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">7. CookieSwap </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This addon does exactly what its’ name suggests. From a pentesters point of view, being able to change your cookies allows you to identity and understand how sites treat you differently depending on who you are. For example, if a travel site recognizes you as a returning customer they give you a page show­ing similar flight choices for example. Google uses ‘Personalized Search’, where they modify their search results based on your personal identity. So if you have a Google account then you’ll be treated to a ‘Per­sonalized Search.’ CookieSwap allows you to be anonymous. Quite a nice tool for those interested in SEO since Search Engine Results can differ.
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">8. FoxySpider </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">FoxySpider is a web crawler! This tool scrapes websites to find what you want. The tool can scan for videos, images, PDF’s etc. FoxySpider displays the located items in a well-structured thumbnail gallery for ease of use. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">9. OSVDB </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This tool hits the Open Source Vulnerability Database Search and gives you known security vulnerabili­ties. The community is great and stemmed from the Black Hat conferences. This is one of the best addons in our opinion. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">10. Tamper Data </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Tamper Data acts as a proxy in a MITM way – by inserting itself between the user (client) and the web site or application. This tool allows the IT security professional to investigate all elements of HTTP – es­pecially all the GET’s and POST’s that can be manipulated without the constraints imposed by the user interface normally seen in the browser. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">11. Domain Details </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Its’ name says it all – this is a nice and simple addon because it displays the server type, headers, precise IP address and location and whois. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">12. Live HTTP Headers </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">If your interested in headers then also take a look at Tamper Data (a few above this one). Live HTTP head­ers shows headers of the actual page or application that you are browsing. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">13. URL Flipper </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">URL allows the pentester to increment or decrement a section of a URL without having to manually edit the string in the location field within FireFox. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">14. Greasmonkey </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This is a classic and a very popular addon – which allows you to manipulate a web page by using small bits of JavaScript. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">15. PassiveRecon </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">PassiveRecon provides information IT security professionals with the ability to execute “packetless” discovery of target resources utilizing publicly available information. Used with the Open Source Vulner­ability Database Search for maximum affect. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">16. User Agent Switcher </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">The User Agent Switcher allows the switching of user agent data of a browser. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">17. Groundspeed </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Groundspeed allows security testers to manipulate the application user interface to eliminate possible limitations and client-side restrictions that interfere with penetration testing.
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">18. Poster </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This tool allows you to interact with web services and other web resources by showing HTTP requests, entity body commands, and content type. See also Live HTTP Headers.
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">19. Firebug </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Probably the best known addon in our 2013 Concise Courses Pentesting Firefox addon list. This addon works well for developers, designers and Security Professionals equally since the user can edit, debug, and monitor CSS, HTML, and JavaScript live in any web page. It is one of those apps that once you get started with it you’ll always use it. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">20. HackBar </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This is one of our most highly recommended addons for Firefox. Hackbar is not an exploitation penetra­tion tool – rather, it is helps you with your work flow. This toolbar will help to test sql injections, XSS holes and overall site security. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">21. RESTClient </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Similar to Live HTTP Headers, RESTClient supports all HTTP methods RFC2616 (HTTP/1.1) and RFC2518 (WebDAV). You can construct custom HTTP requests. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">22. Wappalyzer </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Wappalyzer identifies software on websites. Again, can be used with Open Source Vulnerability Database Search. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">23. Host Spy </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Useful if you want to know if your neighbour is spitting out spam since you can see who is on the same IP as you are. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">24. Firecookie </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Firecookie works alongside Firebug. Rather similar to SwapCookies, this addon creates and deletes exist­ing cookies. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">25. HttpFox </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Got to love this one. If you like Wireshark then this addon is your friend. HttpFox monitors and analyzes all incoming and outgoing HTTP traffic between the browser and the web servers. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">26. RefControl </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">You are able to create a list of sites, and the referrer that should be sent for each site. You can select to send that referrer unconditionally or only for third-party requests. Alternatively, you can specify the default behavior for any site not on your generated list. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">27. XSS-Me </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">XSS-Me is a security pentesting exploitation tool designed to test for Cross-Site Scripting (XSS). The ad­don looks for possible entry points for an attack against a system. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">28. XSSed Search </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Related to the addon above, this allows for the searching of cross-site scripting vulnerabilities at the XSSed database.
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold"> 29. Firesheep </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This addon got a lot of publicity. This addon highlights HTTP session hijacking (when a hacker gets their hands on a user’s cookies). There is a similar tool called Facesniff for Android. As cookies are transmitted over networks, this tool, which is a packet sniffer, can discover identities and allows the pentester to take on the log-in credentials of the user or victim. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold"> 30. JSview </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">JSview allows you to access all Javascript. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">31. NoScript </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Probably the best known addon within this list – NoScript provides massive protection to Firefox by deny­ing JavaScript, Java and other executable content. This protects against cross-site scripting attacks (XSS), cross-zone DNS rebinding / CSRF attacks (router hacking), and click -jacking attempts. Pretty cool. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">32. Proxybar </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Similar to FoxyProxy. The user can change proxy. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">33. Cookie Watcher </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This tool probably helps the developer more than the pentester – because it can quickly wipe ‘session’ cookies. The main purpose of this though is to help identify cluster nodes by cookie values. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">34. WOT </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Another highly popular addon. The Web of Trust shows you “trusted sites” – from a pentesters point of view it allows for a snapshot of the credibility of backlinks or otherwise. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">35. Google Site Indexer </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This tool generates site maps based on Google queries which can be useful for both Penetration Testing and Search Engine Optimization. The tool sends zero packets to the host making it anonymous. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">36. refspoof </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Allows for URL Spoofing by pretending to origin from any site by overriding the url referrer in an HTTP request. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">37. ShowIP </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Shows the IP of the current page in the status bar. Also bundles info like hostname, ISP, country and the city. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">38. Packet Storm Search Plugin </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This allows the ethical hacker or pentester to search the packet storm database for exploits, tools and advisories. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">39. Offsec Exploit-db Search </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Allows for the ability to search the Exploit-db Archive – similar to the Open Source Vulnerability Database Search addon.
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">40. Security Focus Vulnerabilities Search Plugin </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Allows for the ability to search the Security Focus – similar to the Open Source Vulnerability Database Search and Exploit-db Archive addons. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">41. Cookie Watcher </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Watch the selected cookie behavior direct in the status bar. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">42. XML Developer Toolbar </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This addon allows for XML Developer standard tools from within Firefox. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">43. CipherFox </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">CipherFox allows you to view the specific SSL cipher that is being used to encrypt connections to a web site. The addon displays the keysize of the cipher and also allows for RC4 to be disabled. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">44. FlagFox </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Similarto ShowIP this addon displays a country flag for the location of a web server and other useful information. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">45. ViewStatePeeker </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">ViewStatePeeker decodes and displays viewstate contents of an *.aspx page 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">46. CryptoFox </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">CryptoFox is an encryption/ decryption tool for cracking MD5 passwords. Great for pentesters and those working in IT Security. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">47. Server Spy </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">As the name suggests, this addon tells you the technology of the web server (Apache, Samba, IIS etc) of the client you are working for. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">48. Default Passwords </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This addon searches the CIRT.net default password database. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">49. Snort IDS Rule Search </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">This addon works with Snort’s open source network-based intrusion detection system (NIDS) which can perform real-time traffic analysis and packet logging on Internet Protocol (IP) networks. Take a look at HttpFox if you are interested in this. 
+    </p>
+    <p lang="en-US" style="margin:0in;font-family:Calibri;font-size:11.0pt"> 
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);"><strong style="font-weight:bold">50. Header Spy </strong>
+    </p>
+    <p data-darkreader-inline-color="" lang="en-US" style="margin: 0in; font-family: &quot;Helvetica Neue Light&quot;; font-size: 10.5pt; color: rgb(51, 51, 51); --darkreader-inline-color: var(--darkreader-text-333333, #c8c3bc);">Similar to Live HTTP Headers – this addon shows HTTP Headers live on the status bar.
+    </p>
+                            
+                            
+  
+  
+    </div>
+  </article>
+  
+  
+  
+          
+          <footer id="footer">
+    <div class="footer-left">
+      Copyright &copy;
+      
+      
+      Tech Motion
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <!--
+         --><li><a href="/">Home</a></li><!--
+         --><li><a href="/about/">About</a></li><!--
+       -->
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  
+      </div>
+      <!-- styles -->
+  
+  
+  
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+  
+  
+      <!-- jquery -->
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+  
+  
+  
+  
+  <!-- clipboard -->
+  
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+    $(function() {
+      // copy-btn HTML
+      var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+      btn += '<i class="fa-regular fa-clone"></i>';
+      btn += '</span>';
+      // mount it!
+      $(".highlight table").before(btn);
+      var clip = new ClipboardJS('.btn-copy', {
+        text: function(trigger) {
+          return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+        }
+      });
+      clip.on('success', function(e) {
+        e.trigger.setAttribute('aria-label', "Copied!");
+        e.clearSelection();
+      })
+    })
+    </script>
+  
+  
+  <script src="/js/main.js"></script>
+  
+  <!-- search -->
+  
+  <!-- Baidu Analytics -->
+  
+  <!-- Cloudflare Analytics -->
+  
+  <!-- Disqus Comments -->
+  
+  <!-- utterances Comments -->
+  
+  </body>
+  </html>
+  
+    

